@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI 領先密碼 — 決策營運實戰課程 | 誠邀您參加</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #0a0e1a;
+      font-family: 'Helvetica Neue', Arial, 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      color: #e8eaf0;
+      -webkit-font-smoothing: antialiased;
+    }
+    .email-wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+      background: #0d1220;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(135deg, #050c1f 0%, #0d1f4a 35%, #1a1060 65%, #2a0a4a 100%);
+      padding: 48px 40px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(100,60,220,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 260px; height: 260px;
+      background: radial-gradient(circle, rgba(0,180,220,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .co-org-label {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #a8c8f0;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+    }
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 3px;
+      color: #7eb8e8;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .hero-title {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.15;
+      background: linear-gradient(90deg, #f0a830 0%, #f5c842 40%, #ffffff 75%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-subtitle {
+      font-size: 18px;
+      font-weight: 600;
+      color: #c8e0ff;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #e87820, #c45010);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 22px;
+      border-radius: 30px;
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 18px rgba(232,120,32,0.45);
+    }
+
+    /* ── Flyer ── */
+    .flyer-section { background: #0d1220; padding: 12px 40px; }
+    .flyer-section img { width: 120px; height: auto; display: inline-block; border-radius: 6px; }
+
+    .gallery-section {
+      background: #0a0e18;
+      padding: 12px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    .gallery-item { width: 100px; display: block; border-radius: 6px; overflow: hidden; flex-shrink: 0; }
+    .gallery-item img { width: 100%; height: 70px; object-fit: cover; display: block; }
+    .gallery-item.full { width: 100px; }
+
+    /* ── Section ── */
+    .section { padding: 36px 40px; }
+    .greeting-text { font-size: 15.5px; line-height: 1.9; color: #cdd6e8; }
+    .greeting-text strong { color: #f0c060; }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(100,140,220,0.4), transparent);
+      margin: 0 40px;
+    }
+
+    /* ── Section Title ── */
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #f0c060;
+      margin-bottom: 20px;
+      padding-left: 14px;
+      border-left: 4px solid #e87820;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Highlight Box ── */
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(15,30,70,0.9), rgba(30,15,65,0.9));
+      border: 1px solid rgba(100,140,220,0.3);
+      border-radius: 12px;
+      padding: 28px 30px;
+      margin-bottom: 24px;
+    }
+    .highlight-box p { font-size: 15px; line-height: 1.85; color: #c8d8f0; }
+    .highlight-box strong { color: #f0c060; }
+
+    /* ── Objectives ── */
+    .objectives-grid { display: table; width: 100%; border-collapse: separate; border-spacing: 0 12px; }
+    .objective-row { display: table-row; }
+    .objective-num { display: table-cell; width: 44px; vertical-align: top; padding-top: 2px; }
+    .obj-num-circle {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, #e87820, #c45010);
+      color: #fff; font-size: 16px; font-weight: 800;
+      text-align: center; line-height: 36px; display: block;
+      box-shadow: 0 3px 12px rgba(232,120,32,0.4);
+    }
+    .objective-content { display: table-cell; vertical-align: top; padding-left: 14px; padding-bottom: 12px; }
+    .objective-title { font-size: 15px; font-weight: 700; color: #a8d0f8; margin-bottom: 4px; }
+    .objective-desc { font-size: 14px; color: #9aaccc; line-height: 1.7; }
+
+    /* ── Schedule ── */
+    .schedule-card {
+      background: rgba(10,20,50,0.7);
+      border: 1px solid rgba(80,120,200,0.3);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .schedule-header {
+      background: linear-gradient(90deg, #1a3080, #2a1870);
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .schedule-day-badge {
+      background: #e87820; color: #fff;
+      font-size: 12px; font-weight: 800;
+      padding: 4px 12px; border-radius: 20px; white-space: nowrap;
+    }
+    .schedule-header-title { font-size: 15px; font-weight: 700; color: #e0eaff; }
+    .schedule-body { padding: 16px 22px; }
+    .schedule-body p { font-size: 14px; color: #9aaccc; line-height: 1.75; }
+    .schedule-body strong { color: #c8d8f0; }
+
+    /* ── Audience ── */
+    .audience-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .audience-tag {
+      background: rgba(30,60,120,0.6);
+      border: 1px solid rgba(100,160,240,0.35);
+      border-radius: 8px; padding: 10px 18px;
+      font-size: 14px; font-weight: 600; color: #a8c8f8;
+    }
+
+    /* ── Pricing ── */
+    .pricing-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    .pricing-table th {
+      background: linear-gradient(90deg, #1a3080, #2a1870);
+      color: #c8d8f0; font-size: 13px; font-weight: 700;
+      padding: 12px 16px; text-align: left; letter-spacing: 0.5px;
+    }
+    .pricing-table td {
+      padding: 12px 16px; font-size: 14px; color: #9aaccc;
+      border-bottom: 1px solid rgba(80,120,200,0.15);
+    }
+    .pricing-table tr:last-child td { border-bottom: none; }
+    .pricing-table tr:nth-child(even) td { background: rgba(20,40,90,0.3); }
+    .price-highlight { color: #f0c060; font-weight: 700; }
+    .early-bird {
+      display: inline-block;
+      background: rgba(232,120,32,0.2);
+      border: 1px solid rgba(232,120,32,0.5);
+      color: #f0a040; font-size: 11px;
+      padding: 2px 8px; border-radius: 10px; margin-left: 6px;
+    }
+
+    /* ── Info Grid ── */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    .info-item {
+      background: rgba(10,20,50,0.6);
+      border: 1px solid rgba(80,120,200,0.25);
+      border-radius: 10px; padding: 16px 18px;
+    }
+    .info-label { font-size: 11px; letter-spacing: 1.5px; color: #6080b0; text-transform: uppercase; margin-bottom: 6px; }
+    .info-value { font-size: 15px; font-weight: 700; color: #c8d8f0; }
+    .info-value.accent { color: #f0c060; }
+
+    /* ── QR Section ── */
+    .qr-section {
+      background: linear-gradient(135deg, rgba(15,30,70,0.95), rgba(30,15,65,0.95));
+      border: 1px solid rgba(100,140,220,0.3);
+      border-radius: 12px; padding: 16px 20px; text-align: center;
+    }
+    .qr-section h3 { font-size: 14px; font-weight: 800; color: #f0c060; margin-bottom: 4px; }
+    .qr-section p { font-size: 12px; color: #8aaccc; margin-bottom: 8px; }
+    .qr-phone {
+      font-size: 15px; font-weight: 700;
+      color: #f0c060; margin-bottom: 20px; display: block;
+    }
+    .qr-code-img {
+      width: 160px; height: 160px;
+      border: 4px solid rgba(255,255,255,0.15);
+      border-radius: 12px; padding: 8px;
+      background: #fff; display: inline-block;
+    }
+    .qr-code-img img { width: 100%; height: 100%; display: block; }
+    .cta-button {
+      display: inline-block; margin-top: 12px;
+      background: linear-gradient(135deg, #e87820, #c45010);
+      color: #fff; font-size: 13px; font-weight: 800;
+      padding: 9px 24px; border-radius: 30px;
+      text-decoration: none; letter-spacing: 1px;
+      box-shadow: 0 4px 16px rgba(232,120,32,0.4);
+    }
+    .seats-warning { margin-top: 14px; font-size: 13px; color: #e87820; font-weight: 600; }
+
+    /* ── YouTube ── */
+    .youtube-block {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(100,140,220,0.3);
+      background: linear-gradient(135deg, rgba(15,30,70,0.9), rgba(30,15,65,0.9));
+    }
+    .youtube-link {
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+      color: inherit;
+      align-items: stretch;
+    }
+    .youtube-thumb-wrap {
+      position: relative;
+      width: 120px;
+      min-width: 120px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .youtube-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .youtube-play-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px; height: 52px;
+      background: rgba(255,0,0,0.85);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; color: #fff;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+    .youtube-info {
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+    }
+    .youtube-badge {
+      font-size: 11px;
+      font-weight: 700;
+      color: #ff4444;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .youtube-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #f0c060;
+      line-height: 1.4;
+    }
+    .youtube-desc {
+      font-size: 13px;
+      color: #8aaccc;
+      line-height: 1.7;
+    }
+    .youtube-cta {
+      font-size: 13px;
+      font-weight: 700;
+      color: #60a8f0;
+      margin-top: 4px;
+    }
+
+    /* ── Logos ── */
+    .logos-section { padding: 16px 24px; text-align: center; }
+    .logos-label { font-size: 11px; letter-spacing: 2px; color: #5070a0; text-transform: uppercase; margin-bottom: 20px; }
+    .logos-row { display: flex; justify-content: center; align-items: center; gap: 32px; flex-wrap: wrap; }
+    .logo-item img { height: 36px; width: auto; object-fit: contain; filter: brightness(0.95); }
+
+    /* ── Footer ── */
+    .footer {
+      background: #060a14; padding: 28px 40px; text-align: center;
+      border-top: 1px solid rgba(80,120,200,0.15);
+    }
+    .footer p { font-size: 12px; color: #3a5070; line-height: 1.8; }
+
+    @media (max-width: 520px) {
+      .hero { padding: 36px 24px 32px; }
+      .hero-title { font-size: 28px; }
+      .section { padding: 28px 24px; }
+      .divider { margin: 0 24px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .logos-section { padding: 24px; }
+      .footer { padding: 24px; }
+      .gallery-section { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="email-wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="co-org-label">澳門首辦 · 三方聯合呈獻</div>
+    <div class="hero-eyebrow">Exclusive Invitation · 誠意邀請</div>
+    <h1 class="hero-title">AI 領先密碼</h1>
+    <div class="hero-subtitle">決策營運實戰課程</div>
+    <div class="hero-badge">2026年3月28–29日 · 飛躍教育中心 · 澳門首辦</div>
+  </div>
+
+  <!-- GREETING -->
+  <div class="section">
+    <p class="greeting-text">
+      親愛的 <strong>{{ $json.Name }}</strong>，
+    </p>
+    <br />
+    <p class="greeting-text">
+      您好！我們誠意邀請您參加即將在<strong>澳門飛躍教育中心</strong>舉辦的<strong>「AI 領先密碼 — 決策營運實戰課程」</strong>。這是一個為企業領導者、管理者和決策者精心設計的實戰培訓，將幫助您掌握 AI 工具，提升企業競爭力。
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HIGHLIGHTS -->
+  <div class="section">
+    <h2 class="section-title">課程亮點 · Course Highlights</h2>
+    <div class="highlight-box">
+      <p><strong>🎯 實戰導向</strong> —— 不只是理論，更是實戰。透過真實案例和實際操作，讓您學會如何將 AI 應用於日常業務決策。</p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>🤖 AI 工具實操</strong> —— ChatGPT、Claude、Midjourney 等前沿 AI 工具的深度應用，從文本生成到圖像創作，全方位掌握。</p>
+    </div>
+    <div class="highlight-box">
+      <p><strong>📈 決策優化</strong> —— 學習如何利用 AI 進行數據分析、市場預測和風險評估，讓您的商業決策更加精準高效。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- OBJECTIVES -->
+  <div class="section">
+    <h2 class="section-title">課程目標 · Learning Objectives</h2>
+    <div class="objectives-grid">
+      <div class="objective-row">
+        <div class="objective-num"><span class="obj-num-circle">1</span></div>
+        <div class="objective-content">
+          <div class="objective-title">掌握 AI 基礎與應用場景</div>
+          <div class="objective-desc">了解 AI 技術的發展現狀，認識其在不同行業的應用潛力</div>
+        </div>
+      </div>
+      <div class="objective-row">
+        <div class="objective-num"><span class="obj-num-circle">2</span></div>
+        <div class="objective-content">
+          <div class="objective-title">熟練使用主流 AI 工具</div>
+          <div class="objective-desc">實際操作 ChatGPT、Claude、Midjourney 等工具，提升工作效率</div>
+        </div>
+      </div>
+      <div class="objective-row">
+        <div class="objective-num"><span class="obj-num-circle">3</span></div>
+        <div class="objective-content">
+          <div class="objective-title">構建 AI 驅動的決策流程</div>
+          <div class="objective-desc">學會如何將 AI 整合到企業決策和營運流程中</div>
+        </div>
+      </div>
+      <div class="objective-row">
+        <div class="objective-num"><span class="obj-num-circle">4</span></div>
+        <div class="objective-content">
+          <div class="objective-title">制定企業 AI 採用策略</div>
+          <div class="objective-desc">規劃和實施 AI 轉型路線圖，推動組織創新</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SCHEDULE -->
+  <div class="section">
+    <h2 class="section-title">課程安排 · Schedule</h2>
+
+    <div class="schedule-card">
+      <div class="schedule-header">
+        <span class="schedule-day-badge">第一天</span>
+        <span class="schedule-header-title">2026年3月28日 (周六)</span>
+      </div>
+      <div class="schedule-body">
+        <p><strong>09:30 – 10:00</strong> · 簡介與破冰</p>
+        <p><strong>10:00 – 12:30</strong> · AI 基礎與工具實操</p>
+        <p><strong>12:30 – 14:00</strong> · 午餐休息</p>
+        <p><strong>14:00 – 17:00</strong> · 決策優化實戰工作坊</p>
+      </div>
+    </div>
+
+    <div class="schedule-card">
+      <div class="schedule-header">
+        <span class="schedule-day-badge">第二天</span>
+        <span class="schedule-header-title">2026年3月29日 (周日)</span>
+      </div>
+      <div class="schedule-body">
+        <p><strong>09:30 – 12:30</strong> · 行業應用案例分析</p>
+        <p><strong>12:30 – 14:00</strong> · 午餐休息</p>
+        <p><strong>14:00 – 16:00</strong> · AI 策略制定與規劃</p>
+        <p><strong>16:00 – 17:00</strong> · 總結與頒發證書</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHO SHOULD ATTEND -->
+  <div class="section">
+    <h2 class="section-title">適合對象 · Who Should Attend</h2>
+    <p style="color: #c8d8f0; font-size: 15px; line-height: 1.8; margin-bottom: 16px;">
+      本課程適合希望掌握 AI 技術以提升企業競爭力的專業人士：
+    </p>
+    <div class="audience-tags">
+      <span class="audience-tag">企業決策者</span>
+      <span class="audience-tag">高級管理者</span>
+      <span class="audience-tag">創業家</span>
+      <span class="audience-tag">業務負責人</span>
+      <span class="audience-tag">行業專家</span>
+      <span class="audience-tag">AI 愛好者</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <h2 class="section-title">課程費用 · Pricing</h2>
+    <table class="pricing-table">
+      <thead>
+        <tr>
+          <th>類型</th>
+          <th>費用 (MOP)</th>
+          <th>備註</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>早鳥優惠 <span class="early-bird">限時</span></td>
+          <td class="price-highlight">MOP 2,800</td>
+          <td>3月15日前報名</td>
+        </tr>
+        <tr>
+          <td>標準價格</td>
+          <td>MOP 3,500</td>
+          <td>3月15日後報名</td>
+        </tr>
+        <tr>
+          <td>團體報名 (3人或以上)</td>
+          <td class="price-highlight">MOP 2,500/人</td>
+          <td>需同時報名</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- INFO GRID -->
+  <div class="section">
+    <h2 class="section-title">活動詳情 · Event Details</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">📅 日期</div>
+        <div class="info-value">2026年3月28–29日</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">⏰ 時間</div>
+        <div class="info-value">09:30 – 17:00</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">📍 地點</div>
+        <div class="info-value">飛躍教育中心<br><span style="font-size: 13px; color: #9aaccc;">澳門宋玉生廣場</span></div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">🎫 名額</div>
+        <div class="info-value accent">僅限 30 席</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- QR / CTA -->
+  <div class="section">
+    <div class="qr-section">
+      <h3>立即報名 · Register Now</h3>
+      <p>掃描 QR Code 或聯絡我們預留席位</p>
+      <span class="qr-phone">📞 +853 1234 5678</span>
+      <a href="https://luma.com/example" class="cta-button">🎯 立即報名</a>
+      <p class="seats-warning">⚠️ 名額有限，額滿即止</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- YOUTUBE -->
+  <div class="section">
+    <h2 class="section-title">瞭解更多 · Learn More</h2>
+    <div class="youtube-block">
+      <a href="https://youtube.com/shorts/3bDfAYALWxg" class="youtube-link">
+        <div class="youtube-thumb-wrap">
+          <img src="images/macau_youtube_thumb.jpeg" alt="課程預告視頻" class="youtube-thumb" />
+          <div class="youtube-play-btn">▶</div>
+        </div>
+        <div class="youtube-info">
+          <div class="youtube-badge">YouTube</div>
+          <div class="youtube-title">AI 領先密碼 — 課程預告</div>
+          <div class="youtube-desc">觀看我們的課程預告片，瞭解更多關於這次實戰培訓的詳細內容。</div>
+          <div class="youtube-cta">點擊觀看 ▶</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- LOGOS -->
+  <div class="logos-section">
+    <div class="logos-label">聯合主辦單位 · Organized By</div>
+    <div class="logos-row">
+      <div class="logo-item">
+        <img src="images/macau_logo.jpeg" alt="Logo 1" />
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN FLYER -->
+  <div class="flyer-section">
+    <img src="images/macau_flyer.jpeg" alt="AI 領先密碼課程海報" />
+  </div>
+
+  <!-- GALLERY SECTION -->
+  <div class="gallery-section">
+    <div class="gallery-item">
+      <img src="images/macau_gallery_1.jpeg" alt="課程亮點" />
+    </div>
+    <div class="gallery-item">
+      <img src="images/macau_gallery_2.jpeg" alt="課程內容" />
+    </div>
+    <div class="gallery-item">
+      <img src="images/macau_gallery_3.jpeg" alt="講師介紹" />
+    </div>
+    <div class="gallery-item">
+      <img src="images/macau_gallery_4.jpeg" alt="課程特色" />
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 AI 領先密碼課程. All rights reserved.</p>
+    <p style="margin-top: 8px;">
+      <a href="#" style="color: #5070a0; text-decoration: none;">取消訂閱</a> ·
+      <a href="#" style="color: #5070a0; text-decoration: none;">查看網頁版</a>
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
+{{ $json.Name }}
